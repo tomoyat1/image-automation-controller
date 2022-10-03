@@ -542,6 +542,8 @@ func (r *ImageUpdateAutomationReconciler) getRepoAccess(ctx context.Context, rep
 // cloneInto clones the upstream repository at the `ref` given (which
 // can be `nil`). It returns a `*libgit2.Repository` since that is used
 // for committing changes.
+// TODO(tomoyat1): move this to a separate package that keeps track of cloned repos, serializes operations to them,
+//                 and updates them if applicable when a clone is attempted.
 func cloneInto(ctx context.Context, access repoAccess, ref *sourcev1.GitRepositoryRef,
 	path string) (*libgit2.Repository, error) {
 	opts := git.CheckoutOptions{}
